@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Button from "react-bootstrap/Button";
+
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
@@ -7,7 +7,7 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 
 export default function Header() {
-  const [darkMode, setDarkMode] = useState(true);
+  const [darkMode, setDarkMode] = useState(false);
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
@@ -79,8 +79,8 @@ export default function Header() {
                 role="switch"
                 id="flexSwitchCheckDefault"
               />
-              <label className="form-check-label" for="flexSwitchCheckChecked">
-                {darkMode ? "Dark" : "Light"}
+              <label className="form-check-label" htmlFor="flexSwitchCheckDefault">
+                {darkMode ? "Light" : "Dark"}
               </label>
             </div>
           </Form>

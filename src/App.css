@@ -6,6 +6,16 @@
   height: 40vmin;
   pointer-events: none;
 }
+.h-card {
+  max-height: 200px;
+  overflow-y: auto;
+  min-height: 200px;
+}
+.h-title{
+  max-height: 100px;
+  min-height: 100px;
+  overflow-y: hidden;
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {

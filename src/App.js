@@ -1,11 +1,12 @@
-import logo from './logo.svg';
+
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Button } from 'react-bootstrap';
+
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 import Header from './components/Header';
 import Blog from './components/Blog';
+import Article from './components/Article';
 
 
 function App() {
@@ -13,7 +14,8 @@ function App() {
     <div className="App">
      
       <Header/>
-      <Blog/>
+  
+      <Article/>
     </div>
   );
 }
