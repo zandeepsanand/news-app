@@ -22,9 +22,9 @@ export default function Header() {
       <Container fluid>
         <Navbar.Brand
           href="#"
-          className={darkMode ? "text-light" : "text-dark"}
+          className={darkMode ? "text-light ps-5" : "text-dark"}
         >
-          News App
+          W-News
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
@@ -33,43 +33,7 @@ export default function Header() {
             style={{ maxHeight: "100px" }}
             navbarScroll
           >
-            <Nav.Link
-              href="#action1"
-              className={darkMode ? "text-light" : "text-dark"}
-            >
-              Home
-            </Nav.Link>
-            <Nav.Link
-              href="#action2"
-              className={darkMode ? "text-light" : "text-dark"}
-            >
-              New
-            </Nav.Link>
-            <NavDropdown
-              title="Categories"
-              id="navbarScrollingDropdown"
-              className={darkMode ? "bg-dark text-light" : "bg-light "}
-            >
-              <NavDropdown.Item
-                href="#action3"
-                className={darkMode ? "text-light" : "text-dark"}
-              >
-                World
-              </NavDropdown.Item>
-              <NavDropdown.Item
-                href="#action4"
-                className={darkMode ? "text-light" : "text-dark"}
-              >
-                Business
-              </NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item
-                href="#action5"
-                className={darkMode ? "text-light" : "text-dark"}
-              >
-                Tech
-              </NavDropdown.Item>
-            </NavDropdown>
+       
           </Nav>
           <Form className="d-flex">
             <div className="form-check form-switch" onClick={toggleDarkMode}>

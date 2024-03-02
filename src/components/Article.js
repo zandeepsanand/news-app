@@ -34,14 +34,21 @@ const options2 = {
 };
 
 const API_KEY_OPENNEWS = "YOUR_OPENNEWS_KEY";
-const API_KEY_GUARDIAN = "YOUR_GUARDIAN_KEY";
+const API_KEY_NEWYORK = "IdiGdBfcKykaIzMWTEVYjasnKnfFfGJj";
 
 export default function Article() {
   const [loading, setLoading] = useState(true);
+  const [loadingFilter, setLoadingFilter] = useState(true);
   const [articles, setArticles] = useState([]);
   const [headlines, setHeadLines] = useState([]);
   const [categories, setCategories] = useState([]);
   const [search, setSearch] = useState([]);
+  const [newyorkTimes, setNewyorkTimes] = useState([]);
+  const [newyorkFilter,setNewyorkFilter]=useState([]);
+  const [selectedButtons, setSelectedButtons] = useState([]);
+  const updateSelectedButtons = (buttons) => {
+    setSelectedButtons(buttons);
+  };
 
   useEffect(() => {
     const fetchNewsArticles = async () => {
@@ -58,13 +65,12 @@ export default function Article() {
         const response = await axios.request(options2);
         console.log(response.data.articles, "search");
         setSearch(response.data.articles);
-        const guardion = await axios.get('https://content.guardianapis.com/search', {
-          params: {
-            q: '', // Specify your search query here
-            api_key: 'fd26fc8c-8e13-49ac-afc0-1f4f4122f077', // Replace with your API key
-          },})
+        const newyorkTimes = await axios.get(
+          "https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json?api-key=IdiGdBfcKykaIzMWTEVYjasnKnfFfGJj"
+        );
 
-          console.log(guardion, "gurdion ");
+        console.log(newyorkTimes.data.results, "newyorkTimes");
+        setNewyorkTimes(newyorkTimes.data.results);
         // Fetch news articles from The Guardian
         // const responseGuardian = await axios.get('https://content.guardianapis.com/search', {
         //   params: {
@@ -89,13 +95,45 @@ export default function Article() {
 
     fetchNewsArticles();
   }, []);
+
+
+
+  const filterSearch = async () => {
+    try {
+      setLoadingFilter(true);
+      const filterResponse = await axios.get(
+        `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=&fq=${selectedButtons}&api-key=${API_KEY_NEWYORK}`
+      );
+      console.log( `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=&fq=${selectedButtons}&api-key=${API_KEY_NEWYORK}` , "useEffect ");
+      setNewyorkFilter(filterResponse.data.response.docs);
+      console.log(filterResponse.data.response.docs , "value");
+      setLoadingFilter(false);
+    } catch (error) {
+      console.error("error in the filter result");
+      setLoadingFilter(false);
+    }
+  };
+
+
   return (
     <div>
       <div className="container mt-4 ">
         {loading ? (
-          <div className="text-center">Loading...</div>
+          <div class="spinner-border text-info" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
         ) : (
-          <Blog articles={articles} headlines={headlines} search={search}/>
+          <Blog
+            articles={articles}
+            headlines={headlines}
+            search={search}
+            newyorkTimes={newyorkTimes}
+            selectedButtons={selectedButtons}
+            updateSelectedButtons={updateSelectedButtons}
+            newyorkFilter={newyorkFilter}
+            filterSearch={filterSearch}
+            loadingFilter={loadingFilter}
+          />
         )}
       </div>
     </div>
