@@ -418,16 +418,16 @@ export default function Blog({
         {newyorkFilter.length > 0 &&
           newyorkFilter[0].multimedia &&
           newyorkFilter[0].multimedia.length > 0 && (
-        <div class="container pt-4">
-          <h5 className="text-start text-bold">
-            Trending
-            <FontAwesomeIcon
-              icon={faCaretRight}
-              size="1x"
-              style={{ marginLeft: "10px" }}
-            />
-          </h5>
-        </div>
+            <div class="container pt-4">
+              <h5 className="text-start text-bold">
+                Trending
+                <FontAwesomeIcon
+                  icon={faCaretRight}
+                  size="1x"
+                  style={{ marginLeft: "10px" }}
+                />
+              </h5>
+            </div>
           )}
         {!loadingFilter ? (
           <div className="container py-3">
@@ -445,13 +445,13 @@ export default function Blog({
                               <img
                                 src={`https://www.nytimes.com/${newyorkFilter[0].multimedia[0].url}`}
                                 alt={newyorkFilter[0].multimedia[0].url}
-                                className="card-img-top img-fluid1"
+                                className="d-block rounded img-fluid"
                               />
                             ) : (
                               <img
                                 src={`https://www.shutterstock.com/image-vector/no-image-available-vector-hand-260nw-745639717.jpg`}
                                 alt="no_image"
-                                className="card-img-top img-fluid1"
+                                className="d-block rounded img-fluid1"
                               />
                             )}
                           </div>
@@ -485,7 +485,7 @@ export default function Blog({
         <div className="container py-3"></div>
         <div class="container pt-4">
           <h5 className="text-start text-bold text-secondary">
-            Top story 
+            Top story
             <FontAwesomeIcon
               icon={faCaretRight}
               size="1x"
@@ -507,13 +507,13 @@ export default function Blog({
                       <img
                         src={`https://www.nytimes.com/${filterResult.multimedia[0].url}`}
                         alt={filterResult.multimedia[0].url}
-                        className="card-img-top img-fluid1"
+                        className="d-block rounded img-fluid"
                       />
                     ) : (
                       <img
                         src={`https://www.shutterstock.com/image-vector/no-image-available-vector-hand-260nw-745639717.jpg`}
                         alt="no_image"
-                        className="card-img-top img-fluid1"
+                        className="d-block rounded img-fluid"
                       />
                     )}
                     <div className="card-body">
@@ -611,7 +611,7 @@ export default function Blog({
                       <div className="card shadow mb-3">
                         <img
                           src={article.urlToImage}
-                          className="card-img-top img-fluid1 "
+                          className="d-block rounded img-fluid "
                           alt={article.urlToImage}
                         />
                         <div className="card-body">
