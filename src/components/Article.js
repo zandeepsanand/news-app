@@ -50,6 +50,51 @@ export default function Article() {
     setSelectedButtons(buttons);
   };
 
+  // useEffect(() => {
+  //   const fetchNewsArticles = async () => {
+  //     try {
+  //       // Fetch news articles from NewsAPI
+  //       const responseNewsAPI = await axios.get(
+  //         `https://newsapi.org/v2/top-headlines?country=us&apiKey=${API_KEY_NEWSAPI}`
+  //       );
+
+  //       // Fetch news articles from OpenNews
+  //       const responseOpenNews = await axios.request(options);
+  //       console.log(responseOpenNews.data.articles, "log");
+  //       setHeadLines(responseOpenNews.data.articles);
+  //       const response = await axios.request(options2);
+  //       console.log(response.data.articles, "search");
+  //       setSearch(response.data.articles);
+  //       const newyorkTimes = await axios.get(
+  //         "https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json?api-key=IdiGdBfcKykaIzMWTEVYjasnKnfFfGJj"
+  //       );
+
+  //       console.log(newyorkTimes.data.results, "newyorkTimes");
+  //       setNewyorkTimes(newyorkTimes.data.results);
+  //       // Fetch news articles from The Guardian
+  //       // const responseGuardian = await axios.get('https://content.guardianapis.com/search', {
+  //       //   params: {
+  //       //     'api-key': API_KEY_GUARDIAN,
+  //       //     section: 'world', // Example: Fetch articles from the world section
+  //       //   },
+  //       // });
+
+  //       // Combine and set articles from all sources
+  //       setArticles([
+  //         ...responseNewsAPI.data.articles,
+
+  //         // ...responseGuardian.data.response.results,
+  //       ]);
+  //       setLoading(false); // Set loading to false once data is fetched
+  //       console.log(articles, "article");
+  //     } catch (error) {
+  //       console.error("Error fetching news articles second:", error);
+  //       setLoading(false); // Set loading to false once data is fetched
+  //     }
+  //   };
+
+  //   fetchNewsArticles();
+  // }, []);
   useEffect(() => {
     const fetchNewsArticles = async () => {
       try {
@@ -57,44 +102,36 @@ export default function Article() {
         const responseNewsAPI = await axios.get(
           `https://newsapi.org/v2/top-headlines?country=us&apiKey=${API_KEY_NEWSAPI}`
         );
-
+  
+        setHeadLines(responseNewsAPI.data.articles);
+  
         // Fetch news articles from OpenNews
         const responseOpenNews = await axios.request(options);
         console.log(responseOpenNews.data.articles, "log");
-        setHeadLines(responseOpenNews.data.articles);
-        const response = await axios.request(options2);
-        console.log(response.data.articles, "search");
-        setSearch(response.data.articles);
+        setSearch(responseOpenNews.data.articles);
+  
+        // Fetch news articles from New York Times
         const newyorkTimes = await axios.get(
           "https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json?api-key=IdiGdBfcKykaIzMWTEVYjasnKnfFfGJj"
         );
-
+  
         console.log(newyorkTimes.data.results, "newyorkTimes");
         setNewyorkTimes(newyorkTimes.data.results);
-        // Fetch news articles from The Guardian
-        // const responseGuardian = await axios.get('https://content.guardianapis.com/search', {
-        //   params: {
-        //     'api-key': API_KEY_GUARDIAN,
-        //     section: 'world', // Example: Fetch articles from the world section
-        //   },
-        // });
-
+  
         // Combine and set articles from all sources
         setArticles([
           ...responseNewsAPI.data.articles,
-
-          // ...responseGuardian.data.response.results,
         ]);
-        setLoading(false); // Set loading to false once data is fetched
-        console.log(articles, "article");
       } catch (error) {
-        console.error("Error fetching news articles second:", error);
-        setLoading(false); // Set loading to false once data is fetched
+        console.error("Error fetching news articles:", error);
+      } finally {
+        setLoading(false); // Set loading to false once data is fetched or error occurs
       }
     };
-
+  
     fetchNewsArticles();
   }, []);
+  
 
 
 
